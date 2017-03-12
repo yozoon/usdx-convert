@@ -43,7 +43,7 @@ def convert_xml(song):
 	normpath = str(os.path.normpath(song)).split(os.sep)
 	
 	print "--------------------------------"
-	print "Creating Ultrastar TXT:"
+	print bcolors.BOLD + "Creating Ultrastar TXT:" + bcolors.ENDC
 	print "XML Version: ", str(version)
 	print "Edition: ", normpath[len(normpath)-2]
 	print "Artist: ", artist
@@ -169,6 +169,7 @@ def convert_media(song):
 	# Convert OGG to MP3
 	command = [ FFMPEG_BIN, '-y', '-i', song + os.path.sep + 'music.ogg','-acodec', 'libmp3lame', song + os.path.sep + songname + '.mp3']
 	pipe = sp.Popen(command, stdout=FNULL, stderr=sp.STDOUT)
+	print 'Converting OGG file to MP3...'
 	pipe.communicate() # Wait for sp to finish
 	# Rename Cover
 	command = [ 'mv', song + os.path.sep + 'cover.png', song + os.path.sep + songname + '.png']
